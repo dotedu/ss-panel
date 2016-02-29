@@ -39,7 +39,7 @@
 
                                         <div class="info-box-content">
                                             <div class=row>
-                                                <div class="col-xs-6 col-sm-8">
+                                                <div class="col-xs-11 col-sm-8">
                                                     <div class="info-box-number">
                                                         <a href="./node/{$node->id}">{$node->name}</a> <sub><span
                                                                     class="label label-success">{$node->status}</span></sub>
@@ -83,7 +83,7 @@
                                                         </div>-->
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-5 col-sm-3">
+                                                <div class="col-xs-11 col-sm-3">
                                                     <div class="progress-description">{$node->info}</div>
                                                 </div>
                                             </div>

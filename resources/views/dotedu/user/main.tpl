@@ -7,7 +7,7 @@
     <!-- Bootstrap 3.3.2 -->
     <link href="/assets/public/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Font Awesome Icons -->
-    <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Ionicons -->
     <link href="//cdn.bootcss.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet">
     <!-- Theme style -->
@@ -29,6 +29,9 @@
 		.label {
 			padding: .2em .6em .2em;
 		}    
+		.info-box-number .sub {
+			bottom: 0em;
+		}
     </style>
 </head>
 <body class="skin-blue">

@@ -47,19 +47,19 @@
 
                                                     <div class="info-box-text row" style="text-transform:none">
                                                         <div class="col-xs-4 col-sm-1">地址：</div>
-                                                        <div class="col-xs-8 col-sm-2"><span
+                                                        <div class="col-xs-8 col-sm-3"><span
                                                                     class="label label-waring">{$node->server}</span>
                                                         </div>
                                                         <div class="col-xs-4 col-sm-1">端口：</div>
-                                                        <div class="col-xs-8 col-sm-2"><span
+                                                        <div class="col-xs-8 col-sm-3"><span
                                                                     class="label label-waring">{$user->port}</span>
                                                         </div>
                                                         <div class="col-xs-4 col-sm-1">密码：</div>
-                                                        <div class="col-xs-8 col-sm-2"><span
+                                                        <div class="col-xs-8 col-sm-3"><span
                                                                     class="label label-waring">{$user->passwd}</span>
                                                         </div>
                                                         <div class="col-xs-4 col-sm-1">加密：</div>
-                                                        <div class="col-xs-8 col-sm-2">
+                                                        <div class="col-xs-8 col-sm-3">
                                                         <span class="label label-waring">
                                                             {if $node->custom_method == 1}
                                                                 {$user->method}
@@ -70,11 +70,11 @@
 
                                                         </div>
                                                         <div class="col-xs-4 col-sm-1">协议：</div>
-                                                        <div class="col-xs-8 col-sm-2"><span
+                                                        <div class="col-xs-8 col-sm-3"><span
                                                                     class="label label-waring">{$node->protocol}</span>
                                                         </div>
                                                         <div class="col-xs-4 col-sm-1">混淆：</div>
-                                                        <div class="col-xs-8 col-sm-2"><span
+                                                        <div class="col-xs-8 col-sm-3"><span
                                                                     class="label label-waring">{$node->obfs}</span>
                                                         </div>
                                                         <!--<div class="col-xs-4 col-sm-2">流量比例：</div>

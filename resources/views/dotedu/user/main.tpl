@@ -29,7 +29,7 @@
 		.label {
 			padding: .2em .6em .2em;
 		}    
-		.info-box-number .sub {
+		.info-box-number sub {
 			bottom: 0em;
 		}
     </style>

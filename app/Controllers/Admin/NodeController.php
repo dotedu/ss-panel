@@ -21,6 +21,8 @@ class NodeController extends BaseController
         $node->name =  $request->getParam('name');
         $node->server =  $request->getParam('server');
         $node->method =  $request->getParam('method');
+        $node->protocol =  $request->getParam('protocol');
+        $node->obfs =  $request->getParam('obfs');
         $node->custom_method =  $request->getParam('custom_method');
         $node->traffic_rate = $request->getParam('rate');
         $node->info = $request->getParam('info');
@@ -53,6 +55,8 @@ class NodeController extends BaseController
         $node->name =  $request->getParam('name');
         $node->server =  $request->getParam('server');
         $node->method =  $request->getParam('method');
+        $node->protocol =  $request->getParam('protocol');
+        $node->obfs =  $request->getParam('obfs');
         $node->custom_method =  $request->getParam('custom_method');
         $node->traffic_rate = $request->getParam('rate');
         $node->info = $request->getParam('info');

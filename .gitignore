@@ -1,4 +1,6 @@
 .idea
 .env
+db-160223.sql
 vendor/
+_notes
 composer.phar

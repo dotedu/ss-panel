@@ -27,7 +27,7 @@ Please visit [releases pages](https://github.com/orvice/ss-panel/releases) to do
 ### Step 0
 
 ```
-git clone https://github.com/orvice/ss-panel.git
+git clone -b v3-modify https://github.com/dotedu/sspanel.git
 ```
 
 ### Step 1

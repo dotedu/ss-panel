@@ -24,6 +24,8 @@ CREATE TABLE `ss_node` (
   `type` int(3) NOT NULL,
   `server` varchar(128) NOT NULL,
   `method` varchar(64) NOT NULL,
+  `protocol` varchar(128) NOT NULL DEFAULT 'origin',
+  `obfs` varchar(128) NOT NULL DEFAULT 'plain',
   `custom_method` tinyint(1) NOT NULL DEFAULT '0',
   `traffic_rate` float NOT NULL DEFAULT '1',
   `info` varchar(128) NOT NULL,
@@ -55,6 +57,7 @@ CREATE TABLE `user` (
   `t` int(11) NOT NULL DEFAULT '0',
   `u` bigint(20) NOT NULL,
   `d` bigint(20) NOT NULL,
+  `plan` varchar(2) NOT NULL DEFAULT 'A',
   `transfer_enable` bigint(20) NOT NULL,
   `port` int(11) NOT NULL,
   `switch` tinyint(4) NOT NULL DEFAULT '1',
@@ -68,7 +71,7 @@ CREATE TABLE `user` (
   `is_admin` int(2) NOT NULL DEFAULT '0',
   `ref_by` int(11) NOT NULL DEFAULT '0',
   `expire_time` int(11) NOT NULL DEFAULT '0',
-  `method` varchar(64) NOT NULL DEFAULT 'rc4-md5',
+  `method` varchar(64) NOT NULL DEFAULT 'aes-256-cfb',
   `is_email_verify` tinyint(4) NOT NULL DEFAULT '0',
   `reg_ip` varchar(128) NOT NULL DEFAULT '127.0.0.1',
   PRIMARY KEY (`id`)
@@ -99,5 +102,7 @@ CREATE TABLE `user_traffic_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `user` (`id`, `user_name`, `email`, `pass`, `passwd`, `t`, `u`, `d`, `plan`, `transfer_enable`, `port`, `switch`, `enable`, `type`, `last_get_gift_time`, `last_check_in_time`, `last_rest_pass_time`, `reg_date`, `invite_num`, `is_admin`, `ref_by`, `expire_time`, `method`, `is_email_verify`, `reg_ip`) VALUES
+(1, 'admin', 'test@dotedu.cn', 'fafdb6bc895b07db806369f0219a7751857b055f57fc392248f3d71a95fd39f6', 'pass', 0, 0, 0, 'B', 537385762816, 9000, 1, 1, 1, 0, 1456714570, 0, '2015-01-26 16:00:00', 0, 1, 0, 0, 'aes-256-cfb', 0, '127.0.0.1');
 
--- 2016-02-23 13:47:11
+-- 2016-02-29 13:47:11

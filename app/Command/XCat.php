@@ -98,8 +98,25 @@ class XCat extends BaseController
     }
 	
     public function nodeStatus(){
-        $nodes = Node::where('type', 1)->orderBy('sort')->get();		
+				
+        $nodes = Node::all();		
         $nodes = json_decode(str_replace("\\","\\"."\\",$nodes),TRUE);
-			echo $nodes[1]["type"];
+		$nodenum = count($nodes);
+		
+		for ($x=0; $x<$nodenum; $x++) {
+			  $server = $nodes[$x]["server"];
+			  $port = $nodes[$x]["ssh_port"];
+			  $fp = @fsockopen($server,$port, $errno, $errstr, 10);
+				  if (!$fp) {
+					  node::where("server",$server)->update([
+						  'status' => '异常',
+					  ]);
+				  } else {
+					  node::where("server",$server)->update([
+						  'status' => '正常',
+					  ]);
+					  fclose($fp);
+				  }
+		} 
 	}
 }

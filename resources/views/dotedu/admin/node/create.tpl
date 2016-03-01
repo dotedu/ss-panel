@@ -171,6 +171,14 @@
                                 <fieldset class="col-sm-6">
                                     <legend>描述信息</legend>
                                     <div class="form-group">
+                                        <label for="ssh_port" class="col-sm-3 control-label">ssh 端口</label>
+
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="ssh_port" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="type" class="col-sm-3 control-label">是否显示</label>
 
                                         <div class="col-sm-9">
@@ -185,7 +193,10 @@
                                         <label for="status" class="col-sm-3 control-label">节点状态</label>
 
                                         <div class="col-sm-9">
-                                            <input class="form-control" id="status" value="">
+                                            <select class="form-control" id="status">
+                                                <option value="正常" selected="selected">正常</option>
+                                                <option value="异常">异常</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -231,6 +242,7 @@
                 data: {
                     name: $("#name").val(),
                     server: $("#server").val(),
+                    ssh_port: $("#ssh_port").val(),
                     method: $("#method").val(),
                     protocol: $("#protocol").val(),
                     obfs: $("#obfs").val(),

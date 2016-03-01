@@ -170,6 +170,14 @@
                                 <fieldset class="col-sm-6">
                                     <legend>描述信息</legend>
                                     <div class="form-group">
+                                        <label for="ssh_port" class="col-sm-3 control-label">ssh 端口</label>
+
+                                        <div class="col-sm-9">
+                                            <input class="form-control" id="ssh_port" value="{$node->ssh_port}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="type" class="col-sm-3 control-label">是否显示</label>
 
                                         <div class="col-sm-9">
@@ -187,7 +195,12 @@
                                         <label for="status" class="col-sm-3 control-label">节点状态</label>
 
                                         <div class="col-sm-9">
-                                            <input class="form-control" id="status" value="{$node->status}">
+                                            <select class="form-control" id="status">
+                                                <option value="正常" {if $node->status=='正常'}selected="selected"{/if}>正常
+                                                </option>
+                                                <option value="异常" {if $node->status=='异常'}selected="selected"{/if}>异常
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -232,6 +245,7 @@
                 data: {
                     name: $("#name").val(),
                     server: $("#server").val(),
+                    ssh_port: $("#ssh_port").val(),
                     method: $("#method").val(),
                     protocol: $("#protocol").val(),
                     obfs: $("#obfs").val(),

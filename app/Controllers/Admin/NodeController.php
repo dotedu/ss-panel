@@ -20,6 +20,7 @@ class NodeController extends BaseController
         $node = new Node();
         $node->name =  $request->getParam('name');
         $node->server =  $request->getParam('server');
+        $node->ssh_port =  $request->getParam('ssh_port');
         $node->method =  $request->getParam('method');
         $node->protocol =  $request->getParam('protocol');
         $node->obfs =  $request->getParam('obfs');

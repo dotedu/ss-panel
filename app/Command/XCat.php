@@ -7,9 +7,11 @@ namespace App\Command;
  * @package App\Command
  */
 
-use App\Models\User;
+use App\Models\Node,App\Models\User;
 use App\Utils\Hash,App\Utils\Tools,App\Services\Config;
-class XCat
+use App\Controllers\BaseController;
+
+class XCat extends BaseController
 {
 
     public $argv;
@@ -27,6 +29,8 @@ class XCat
                 return $this->createAdmin();
             case("resetTraffic"):
                 return $this->resetTraffic();
+            case("nodeStatus"):
+                return $this->nodeStatus();
             default:
                 return $this->defaultAction();
         }
@@ -92,4 +96,10 @@ class XCat
         }
         return "reset traffic successful";
     }
+	
+    public function nodeStatus(){
+        $nodes = Node::where('type', 1)->orderBy('sort')->get();		
+        $nodes = json_decode(str_replace("\\","\\"."\\",$nodes),TRUE);
+			echo $nodes[1]["type"];
+	}
 }

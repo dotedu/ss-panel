@@ -23,6 +23,7 @@ CREATE TABLE `ss_node` (
   `name` varchar(128) NOT NULL,
   `type` int(3) NOT NULL,
   `server` varchar(128) NOT NULL,
+  `ssh_port` int(3) NOT NULL DEFAULT '22',
   `method` varchar(64) NOT NULL,
   `protocol` varchar(128) NOT NULL DEFAULT 'origin',
   `obfs` varchar(128) NOT NULL DEFAULT 'plain',
@@ -105,4 +106,4 @@ CREATE TABLE `user_traffic_log` (
 INSERT INTO `user` (`id`, `user_name`, `email`, `pass`, `passwd`, `t`, `u`, `d`, `plan`, `transfer_enable`, `port`, `switch`, `enable`, `type`, `last_get_gift_time`, `last_check_in_time`, `last_rest_pass_time`, `reg_date`, `invite_num`, `is_admin`, `ref_by`, `expire_time`, `method`, `is_email_verify`, `reg_ip`) VALUES
 (1, 'admin', 'test@dotedu.cn', 'fafdb6bc895b07db806369f0219a7751857b055f57fc392248f3d71a95fd39f6', 'pass', 0, 0, 0, 'B', 537385762816, 9000, 1, 1, 1, 0, 1456714570, 0, '2015-01-26 16:00:00', 0, 1, 0, 0, 'aes-256-cfb', 0, '127.0.0.1');
 
--- 2016-02-29 13:47:11
+-- 2016-03-02 13:47:11

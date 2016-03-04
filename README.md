@@ -1,4 +1,4 @@
-# ss-panel
+﻿# ss-panel
 
 Let's talk about cat.  Base on [LightFish](https://github.com/OzCat/LightFish)
 
@@ -69,7 +69,17 @@ location / {
     
 ```
 
+增加状态检测
+主机中增加定时任务，每10分钟检测一次
+
+```
+*/10 * * * * php xcat nodeStatus > /dev/null  2>&1
+```
+
 ### Step 5 Config
 
 view config guide on [wiki](https://github.com/orvice/ss-panel/wiki/v3-Config)
 
+
+
+php xcat nodeStatus

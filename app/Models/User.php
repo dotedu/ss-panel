@@ -6,10 +6,9 @@ namespace App\Models;
  * User Model
  */
 
-use App\Utils\Tools;
-use App\Utils\Hash;
-use App\Models\InviteCode;
 use App\Services\Config;
+use App\Utils\Hash;
+use App\Utils\Tools;
 
 class User extends Model
 
@@ -25,10 +24,17 @@ class User extends Model
         "u" => 'int',
         "d" => 'int',
         "port" => 'int',
-        "transfer_enable" => 'int',
+        "transfer_enable" => 'float',
         "enable" => 'int',
         'is_admin' => 'boolean',
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['pass', 'last_get_gift_time', 'last_rest_pass_time', 'reg_ip', 'is_email_verify', 'user_name', 'ref_by', 'is_admin'];
 
     public function getGravatarAttribute()
     {
@@ -113,6 +119,12 @@ class User extends Model
     {
         $transfer_enable = $this->attributes['transfer_enable'];
         return Tools::flowAutoShow($transfer_enable);
+    }
+
+    public function enableTrafficInGB()
+    {
+        $transfer_enable = $this->attributes['transfer_enable'];
+        return Tools::flowToGB($transfer_enable);
     }
 
     public function usedTraffic()

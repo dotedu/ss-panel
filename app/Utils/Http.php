@@ -6,6 +6,10 @@ namespace App\Utils;
 
 class Http
 {
+    /**
+     * @codeCoverageIgnore
+     * return string
+     */
     public static function getClientIP()
     {
         $ip = "unknown";
@@ -22,8 +26,10 @@ class Http
                 $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
             } elseif (isset($_SERVER["HTTP_CLIENT_ip"])) {
                 $ip = $_SERVER["HTTP_CLIENT_ip"];
-            } else {
+            } elseif (isset($_SERVER["REMOTE_ADDR"])) {
                 $ip = $_SERVER["REMOTE_ADDR"];
+            } else {
+                $ip = 'Unknown';
             }
         } else {
             if (getenv('HTTP_X_FORWARDED_FOR')) {

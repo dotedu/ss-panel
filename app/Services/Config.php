@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use OzCat\Services\Config as OzConfig;
+use Pongtan\Services\Config as PongtanConfig;
 
 
-class Config extends OzConfig
+class Config extends PongtanConfig
 {
     public static function getPublicConfig()
     {
@@ -41,6 +41,11 @@ class Config extends OzConfig
             'collation' => self::get('db_collation'),
             'prefix' => self::get('db_prefix')
         ];
+    }
+
+    public static function getStoragePath($dir)
+    {
+        return BASE_PATH . '/storage/' . $dir;
     }
 
 }

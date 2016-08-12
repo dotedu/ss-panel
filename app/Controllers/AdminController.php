@@ -2,23 +2,26 @@
 
 namespace App\Controllers;
 
-use App\Models\InviteCode, App\Models\Node, App\Models\TrafficLog;
+use App\Models\CheckInLog;
+use App\Models\InviteCode;
+use App\Models\TrafficLog;
+use App\Services\Analytics;
+use App\Services\DbConfig;
 use App\Utils\Tools;
-use App\Services\Analytics, App\Services\DbConfig;
 
 /**
  *  Admin Controller
  */
-class AdminController extends BaseController
+class AdminController extends UserController
 {
 
-    public function index()
+    public function index($request, $response, $args)
     {
         $sts = new Analytics();
         return $this->view()->assign('sts', $sts)->display('admin/index.tpl');
     }
 
-    public function invite()
+    public function invite($request, $response, $args)
     {
         $codes = InviteCode::where('user_id', '=', '0')->get();
         return $this->view()->assign('codes', $codes)->display('admin/invite.tpl');
@@ -45,15 +48,26 @@ class AdminController extends BaseController
         return $response->getBody()->write(json_encode($res));
     }
 
+    public function checkInLog($request, $response, $args)
+    {
+        $pageNum = 1;
+        if (isset($request->getQueryParams()["page"])) {
+            $pageNum = $request->getQueryParams()["page"];
+        }
+        $traffic = CheckInLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $traffic->setPath('/admin/checkinlog');
+        return $this->view()->assign('logs', $traffic)->display('admin/checkinlog.tpl');
+    }
+
     public function trafficLog($request, $response, $args)
     {
         $pageNum = 1;
         if (isset($request->getQueryParams()["page"])) {
             $pageNum = $request->getQueryParams()["page"];
         }
-        $traffic = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
-        $traffic->setPath('/admin/trafficlog');
-        return $this->view()->assign('logs', $traffic)->display('admin/trafficlog.tpl');
+        $logs = TrafficLog::orderBy('id', 'desc')->paginate(15, ['*'], 'page', $pageNum);
+        $logs->setPath('/admin/trafficlog');
+        return $this->view()->assign('logs', $logs)->display('admin/trafficlog.tpl');
     }
 
     public function config($request, $response, $args)
@@ -63,6 +77,7 @@ class AdminController extends BaseController
             "home-code" => DbConfig::get('home-code'),
             "analytics-code" => DbConfig::get('analytics-code'),
             "user-index" => DbConfig::get('user-index'),
+            "user-node" => DbConfig::get('user-node'),
         ];
         return $this->view()->assign('conf', $conf)->display('admin/config.tpl');
     }
@@ -74,6 +89,7 @@ class AdminController extends BaseController
             "home-code" => $request->getParam('homeCode'),
             "app-name" => $request->getParam('appName'),
             "user-index" => $request->getParam('userIndex'),
+            "user-node" => $request->getParam('userNode'),
         ];
         foreach ($config as $key => $value) {
             DbConfig::set($key, $value);

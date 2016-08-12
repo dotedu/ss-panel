@@ -3,9 +3,12 @@
 namespace App\Controllers\Mu;
 
 use App\Controllers\BaseController;
-use App\Models\Node, App\Models\TrafficLog, App\Models\User;
-use App\Storage\Dynamodb\TrafficLog as DynamoTrafficLog;
+use App\Models\Node;
+use App\Models\TrafficLog;
+use App\Models\User;
 use App\Services\Config;
+use App\Services\Logger;
+use App\Storage\Dynamodb\TrafficLog as DynamoTrafficLog;
 use App\Utils\Tools;
 
 class UserController extends BaseController
@@ -13,11 +16,11 @@ class UserController extends BaseController
     // User List
     public function index($request, $response, $args)
     {
-        $user = User::all();
+        $users = User::all();
         $res = [
             "ret" => 1,
             "msg" => "ok",
-            "data" => $user
+            "data" => $users
         ];
         return $this->echoJson($response, $res);
     }
@@ -55,20 +58,20 @@ class UserController extends BaseController
         $traffic->log_time = time();
         $traffic->save();
 
-        $msg = "ok";
-        if (Config::get('log_traffic_dynamodb')) {
-            try{
-                $client = new DynamoTrafficLog();
-                $client->store($u, $d, $nodeId, $id, $totalTraffic, $rate);
-            }catch(\Exception $e){
-                $msg = $e->getMessage();
-            }
-        }
-
         $res = [
             "ret" => 1,
-            "msg" => $msg,
+            "msg" => "ok",
         ];
+        if (Config::get('log_traffic_dynamodb')) {
+            try {
+                $client = new DynamoTrafficLog();
+                $id = $client->store($u, $d, $nodeId, $id, $totalTraffic, $rate);
+                $res["id"] = $id;
+            } catch (\Exception $e) {
+                $res["msg"] = $e->getMessage();
+                Logger::error($e->getMessage());
+            }
+        }
         return $this->echoJson($response, $res);
     }
 }

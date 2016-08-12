@@ -9,6 +9,9 @@ class Mailgun extends Base
 {
     private $config, $mg, $domain, $sender;
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function __construct()
     {
         $this->config = $this->getConfig();
@@ -17,6 +20,9 @@ class Mailgun extends Base
         $this->sender = $this->config["sender"];
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function getConfig()
     {
         return [
@@ -26,11 +32,21 @@ class Mailgun extends Base
         ];
     }
 
-    public function send($to, $subject, $text)
+    /**
+     * @codeCoverageIgnore
+     */
+    public function send($to, $subject, $text, $file)
     {
-        $this->mg->sendMessage($this->domain, array('from' => $this->sender,
-            'to' => $to,
-            'subject' => $subject,
-            'text' => $text));
+        $this->mg->sendMessage($this->domain,
+            [
+                'from' => $this->sender,
+                'to' => $to,
+                'subject' => $subject,
+                'html' => $text
+            ],
+            [
+                'inline' => $file
+            ]
+        );
     }
 }

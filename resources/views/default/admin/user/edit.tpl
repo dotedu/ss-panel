@@ -12,7 +12,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div cass="row">
+        <div class="row">
             <div class="col-md-12">
                 <div id="msg-success" class="alert alert-success alert-dismissable" style="display: none;">
                     <button type="button" class="close" id="ok-close" aria-hidden="true">&times;</button>
@@ -120,23 +120,20 @@
                                         <div class="col-sm-9">
                                             <div class="input-group">
                                                 <input class="form-control" id="transfer_enable" type="number"
-                                                       value="{$user->transfer_enable}">
+                                                       value="{$user->enableTrafficInGB()}">
 
-                                                <div class="input-group-addon">字节</div>
+                                                <div class="input-group-addon">GiB</div>
                                             </div>
                                         </div>
                                     </div>
+
 
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">已用流量</label>
 
                                         <div class="col-sm-9">
-                                            <div class="input-group">
-                                                <input class="form-control" id="usedTraffic" type="number"
-                                                       value="{$user->u}" readonly>
-
-                                                <div class="input-group-addon">字节</div>
-                                            </div>
+                                            <input class="form-control" id="traffic_usage" type="text"
+                                                   value="{$user->usedTraffic()}" readonly>
                                         </div>
                                     </div>
                                 </fieldset>
